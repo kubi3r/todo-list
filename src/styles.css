@@ -1,0 +1,284 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+}
+
+#todos {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 2px solid black;
+    padding: 16px 0 0 16px;
+}
+
+.todo {
+    width: 600px;
+    border: 2px solid gray;
+    border-radius: 15px;
+    font-size: 18px;
+    padding: 0 8px;
+
+    display: grid;
+    grid-template-columns: 1fr 3fr 3fr 1fr;
+    justify-content: space-between;
+}
+
+.todo.expanded {
+    grid-template-rows: 32px 1fr 32px 32px;
+}
+
+.expanded .priority {
+    display: none;
+}
+
+
+.expand-todo {
+    content: url('./svg/arrow-down.svg');
+    width: 32px;
+    height: auto;
+    justify-self: right;
+}
+
+.expanded .expand-todo {
+    content: url('./svg/arrow-up.svg');
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+}
+
+.todo-title {
+    align-self: center;
+    
+}
+
+.duedate {
+    align-self: center;
+}
+
+.duedate::before {
+    content: 'Due: ';
+}
+
+input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+    align-self: center;
+}
+
+input[type=checkbox]:checked {
+    background-color: blue;
+}
+
+.delete-todo {
+    display: none;
+    content: url('./svg/trash.svg');
+    width: 38px;
+    border-radius: 8px;
+    height: auto;
+}
+
+.delete-todo:hover {
+    background-color: red;
+}
+
+.expanded .delete-todo {
+    display: block;
+    grid-column: 3 / 5;
+    grid-row: 3 / 5;
+
+    margin-left: auto;
+    margin-top: auto;
+}
+
+.sidebar {
+    width: 300px;
+    border-bottom: 1px solid black;
+    border-right: 2px solid black;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo-creation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 8px;
+
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 8px;
+    width: 600px;
+    margin-left: 16px;
+}
+
+label {
+    font-size: 18px;
+}
+
+.todo-description {
+    text-wrap: wrap;
+    overflow-wrap: break-word;
+    overflow: auto;
+    display: none;
+    height: 100px;
+
+    background-color: hsl(0, 0%, 95%);
+    border-radius: 12px;
+
+    border: 1px solid black;
+
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+.expanded .todo-description {
+    display: block;
+    grid-row: 2 / 3;
+    grid-column: 1 / 5;
+}
+
+.project {
+    display: flex;
+    align-items: center;
+}
+
+.project-title {
+    font-size: 26px;
+    cursor: pointer;
+}
+
+#project-creation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.projects-head {
+    font-size: 48px;
+    margin: 6px;
+}
+
+.delete-project {
+    margin-left: auto;
+    height: 36px;
+    width: 75px;
+    border: none;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+
+    border-radius: 8px;
+    cursor: pointer;
+    flex: none;
+}
+
+#projects {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-top: 2px solid black;
+    padding: 16px;
+
+    width: 100%;
+}
+
+#todo-head {
+    font-size: 48px;
+    margin: 6px;
+    margin-left: 32px;
+}
+
+#new-project {
+    cursor: pointer;
+    border: none;
+    background-color: #33b249;
+    color: white;
+    border-radius: 8px;
+    width: 130px;
+    height: 30px;
+    font-size: 18px;
+}
+
+#new-todo {
+    border: none;
+    background-color: #33b249;
+    color: white;
+    margin-left: 16px;
+    margin-top: 12px;
+    border-radius: 8px;
+    width: 100px;
+    height: 30px;
+    font-size: 18px;
+}
+
+.due-date-edit {
+    display: none;
+}
+
+.due-date-edit::before {
+    content: 'Due date: '
+}
+
+.expanded .due-date-edit {
+    display: block;
+    grid-column: 1 / 3;
+}
+
+.priority-edit {
+    display: none;
+}
+
+.expanded .priority-edit {
+    display: block;
+    grid-row: 4 / 5;
+    grid-column: 1 / 3;
+}
+
+.expanded .priority-edit::before {
+    content: 'Priority: '
+}
+
+.main-content {
+    width: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 6px;
+    height: 24px;
+}
+
+.create-project {
+    background-color: #33b249;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.cancel-project {
+    background-color: red;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+#todo-creation-container {
+    margin-top: 12px;
+}
